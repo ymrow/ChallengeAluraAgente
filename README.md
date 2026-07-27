@@ -4,7 +4,7 @@ Challenge Agente - Implementación de un Agente RAG (Retrieval-Augmented Generat
 
 ## 📋 Descripción
 
-Este proyecto implementa un **Agente RAG (Retrieval-Augmented Generation)** que combina técnicas de recuperación de información con generación de texto basada en modelos de lenguaje. El agente es capaz de buscar información relevante y generar respuestas coherentes y contextualizadas.
+Este proyecto implementa un **Agente RAG (Retrieval-Augmented Generation)** que combina técnicas de recuperación de información con generación de texto basada en modelos de lenguaje. El agente [...]
 
 ## 🎯 Objetivo
 
@@ -72,6 +72,67 @@ ChallengeAluraAgente/
 ### 4. **Generación de Respuestas**
    - Integración con modelos de lenguaje
    - Generación de respuestas contextualizadas
+
+## 🏗️ Arquitectura del Sistema
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                      ENTRADA DEL USUARIO                    │
+│                    (Consulta/Pregunta)                      │
+└────────────────────────────┬────────────────────────────────┘
+                             │
+                             ▼
+                    ┌─────────────────┐
+                    │  PROCESAMIENTO  │
+                    │  DE CONSULTA    │
+                    └────────┬────────┘
+                             │
+                ┌────────────┴────────────┐
+                ▼                         ▼
+        ┌─────────────────┐      ┌──────────────────┐
+        │  GENERADOR DE   │      │  BASE DE DATOS   │
+        │  EMBEDDINGS     │      │  DE DOCUMENTOS   │
+        │  (Consulta)     │      │  (Pre-procesada) │
+        └────────┬────────┘      └────────┬─────────┘
+                 │                        │
+                 │     ┌──────────────────┘
+                 │     ▼
+                 │  ┌────────────────────────┐
+                 │  │  BÚSQUEDA SEMÁNTICA    │
+                 │  │  (Similaridad Vector)  │
+                 │  └───────────┬────────────┘
+                 │              │
+                 └──────┬───────┘
+                        │
+                        ▼
+              ┌──────────────────────┐
+              │  DOCUMENTOS RELEVANTES│
+              │  (Top-K Recuperados) │
+              └──────────┬───────────┘
+                        │
+                        ▼
+              ┌──────────────────────┐
+              │   AGENTE LLM         │
+              │   (Generador)        │
+              │  + CONTEXTO          │
+              └──────────┬───────────┘
+                        │
+                        ▼
+              ┌──────────────────────┐
+              │   RESPUESTA FINAL    │
+              │   CONTEXTUALIZADA    │
+              └──────────────────────┘
+```
+
+### Flujo de Procesamiento:
+
+1. **Entrada**: Usuario proporciona una consulta
+2. **Embedding de Consulta**: La consulta se convierte en un vector semántico
+3. **Búsqueda**: Se buscan documentos similares en la base de datos
+4. **Recuperación**: Se obtienen los documentos más relevantes
+5. **Contexto**: Se combina la consulta con los documentos recuperados
+6. **Generación**: El LLM genera una respuesta basada en el contexto
+7. **Salida**: Se devuelve la respuesta al usuario
 
 ## 💡 Características
 
