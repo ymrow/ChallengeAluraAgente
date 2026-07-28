@@ -142,11 +142,15 @@ ChallengeAluraAgente/
 - ✅ Soporte para múltiples fuentes de datos
 - ✅ Embeddings de alta calidad
 
-## 📝 Notas
+## 📝 Despliegue en OCI
 
-- El notebook está diseñado para ejecutarse en Google Colab
-- Los modelos se descargan automáticamente en la primera ejecución
-- Asegúrate de tener suficiente espacio de almacenamiento
+El despliegue permitió ejecutar el agente RAG en la nube y acceder a la solución mediante un navegador web.
+
+Ruta actual: http://170.9.226.61:7860/
+
+<p align="center">
+  <img src="evidencias/evidencia_oci.png" width="900"/>
+</p>
 
 ## 🔗 Referencias
 
